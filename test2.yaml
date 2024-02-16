@@ -1,3 +1,24 @@
+  AWSTemplateFormatVersion: "2010-09-09"
+Parameters: 
+  DBUser: 
+    NoEcho: true
+    Description: The database admin account username
+    Type: String
+    MinLength: 1
+    MaxLength: 16
+    AllowedPattern: "[a-zA-Z][a-zA-Z0-9]*"
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  DBPassword: 
+    NoEcho: true
+    Description: The database admin account password
+    Type: String
+    MinLength: 1
+    MaxLength: 41
+    AllowedPattern: "[a-zA-Z0-9]*"
+    ConstraintDescription: must contain only alphanumeric characters.
+  DBSnapshotName: 
+    Description: The name of a DB snapshot (optional)
+    Default: ""
     Type: String
 Conditions: 
   UseDBSnapshot: !Not [!Equals [!Ref DBSnapshotName, ""]]
